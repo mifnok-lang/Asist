@@ -8,12 +8,6 @@ workflows:
       java: 17
 
     scripts:
-      - name: Check files
-        script: |
-          ls -la
-          ls -la android
-          ls -la android/app
-
       - name: Build release AAB
         script: |
           cd android
