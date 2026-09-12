@@ -1,16 +1,27 @@
+
 workflows:
   android-release:
     name: Android Release
     instance_type: mac_mini_m2
     max_build_duration: 60
+
+    environment:
+      java: 17
+      android_signing:
+        - keystore_reference
+
     scripts:
-      - name: Set up JDK
-        script: |
-          export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-      - name: Build release
+      - name: Prepare Gradle wrapper
         script: |
           cd android
-          ./gradlew assembleRelease
+          chmod +x gradlew
+          ls -la gradlew
+
+      - name: Build release AAB
+        script: |
+          cd android
+          ./gradlew bundleRelease
+
     artifacts:
-      - android/app/build/outputs/**/*.apk
       - android/app/build/outputs/**/*.aab
+      - android/app/build/outputs/**/*.apk
