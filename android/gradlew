@@ -1,3 +1,8 @@
 #!/usr/bin/env sh
 DIR="$(cd "$(dirname "$0")" && pwd)"
 exec "$DIR/gradle/wrapper/gradle-wrapper.jar"
+- name: Build release
+  script: |
+    cd android
+    chmod +x gradlew
+    ./gradlew assembleRelease
