@@ -1,0 +1,2 @@
+rootProject.name = "AIChat"
+include(":app")
