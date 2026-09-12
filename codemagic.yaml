@@ -11,8 +11,10 @@ workflows:
       - name: Build release AAB
         script: |
           cd android
-          gradle bundleRelease --stacktrace --info
+          gradle bundleRelease --stacktrace --info --no-daemon > build.log 2>&1
+          cat build.log
 
     artifacts:
       - android/app/build/outputs/**/*.aab
       - android/app/build/outputs/**/*.apk
+      - android/build.log
