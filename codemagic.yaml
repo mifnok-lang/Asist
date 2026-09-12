@@ -1,0 +1,16 @@
+workflows:
+  android-release:
+    name: Android Release
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    scripts:
+      - name: Set up JDK
+        script: |
+          export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+      - name: Build release
+        script: |
+          cd android
+          ./gradlew assembleRelease
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/**/*.aab
