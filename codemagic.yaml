@@ -7,14 +7,12 @@ workflows:
 
     environment:
       java: 17
-      android_signing:
-        - keystore_reference
 
     scripts:
       - name: Prepare Gradle wrapper
         script: |
           cd android
-          chmod +x gradlew
+          chmod 755 gradlew
           ls -la gradlew
 
       - name: Build release AAB
